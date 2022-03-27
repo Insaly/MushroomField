@@ -16,10 +16,10 @@ func _physics_process(delta):
 	velocitat += gravetat * delta
 	if Input.is_action_pressed("mou_dreta"):
 		velocitat += Vector2.RIGHT * velocitat_base
-		$AnimatedSprite.flip_h = true
+		$Normal.flip_h = true
 	if Input.is_action_pressed("mou_esquerra"):
 		velocitat += Vector2.LEFT * velocitat_base
-		$AnimatedSprite.flip_h = false
+		$Normal.flip_h = false
 	if Input.is_action_just_pressed("mou_amunt") and is_on_floor() or Input.is_action_just_pressed("mou_amunt") and doble_salt >= 2:
 		velocitat.y = velocitat_salt
 		doble_salt -= 1

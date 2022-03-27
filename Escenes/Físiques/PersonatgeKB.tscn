@@ -37,6 +37,6 @@ polygon = PoolVector2Array( -53, -23, -17, -59, 18, -59, 52, -23, 58, -12, 58, 2
 position = Vector2( -4, -33 )
 scale = Vector2( 6.1625, 6.1625 )
 frames = SubResource( 1 )
-frame = 1
+frame = 3
 speed_scale = 0.7
 playing = true
