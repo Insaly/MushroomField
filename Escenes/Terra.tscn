@@ -5,12 +5,12 @@
 [ext_resource path="res://Sprites/Objects/Sliced/obj_0010_Layer-11.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 130.5, 27 )
+extents = Vector2( 130.5, 27.5 )
 
 [node name="StaticBody2D" type="StaticBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.5, 0 )
+position = Vector2( -0.5, -0.5 )
 shape = SubResource( 1 )
 
 [node name="Sprite1" type="Sprite" parent="."]
