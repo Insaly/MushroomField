@@ -1,40 +1,55 @@
-extends Node2D
+extends KinematicBody2D
 
-export var velocitat = Vector2(300,300)
+var velocitat_base = 400
+var velocitat = Vector2.ZERO
 
-var cronometre_x = 0.8
-var cronometre_y = 0.8
+var direccio = Vector2.DOWN
+var gravetat = Vector2.DOWN * 980
+var velocitat_salt = -600
+var doble_salt = 2
+
+var acabo_de_tocar_terra = false
 
 func _process(delta):
+	pass
 
-	velocitat.y = 100 * cronometre_y * 1.5
-	velocitat.x = 100 * cronometre_x * 1.5
-	
-	if Input.is_action_just_pressed("mou_dreta") or Input.is_action_pressed("mou_dreta"):
-		position.x += velocitat.x * delta
-		cronometre_x += (1 * delta)
-	if Input.is_action_just_pressed("mou_esquerra") or Input.is_action_pressed("mou_esquerra"):
-		position.x -= velocitat.x * delta
-		cronometre_x += (1 * delta)
-	if Input.is_action_just_pressed("mou_avall") or Input.is_action_pressed("mou_avall"):
-		position.y += velocitat.y * delta
-		cronometre_y += (1 * delta)
-	if Input.is_action_just_pressed("mou_amunt") or Input.is_action_pressed("mou_amunt"):
-		position.y -= velocitat.y * delta
-		cronometre_y += (1 * delta)
-
-	if Input.is_action_just_released("mou_dreta") or Input.is_action_just_released("mou_dreta") and Input.is_action_just_released("mou_esquerra") or Input.is_action_just_released("mou_esquerra"):
-		cronometre_x = 0.8
-	if Input.is_action_just_released("mou_amunt") or Input.is_action_just_released("mou_amunt") and Input.is_action_just_released("mou_avall") or Input.is_action_just_released("mou_avall"):
-		cronometre_y = 0.8
-
-func _on_Area2D2_area_entered(area):
-	if area.is_in_group('Inici'):
-		modulate = Color(0.2, 0.7, 0.2)
-		area.modulate = Color(0.5, 0.5, 0.5)
-	if area.is_in_group('Final'):
-		modulate = Color(0.7, 0.2, 0.2)
-		area.modulate = Color(0.5, 0.5, 0.5)
+func _physics_process(delta):
+	velocitat.x = 0
+	velocitat += gravetat * delta
+	if Input.is_action_pressed("mou_dreta"):
+		velocitat += Vector2.RIGHT * velocitat_base
+	if Input.is_action_pressed("mou_esquerra"):
+		velocitat += Vector2.LEFT * velocitat_base
+	if Input.is_action_just_pressed("mou_amunt") and is_on_floor() or Input.is_action_just_pressed("mou_amunt") and doble_salt >= 2:
+		velocitat.y = velocitat_salt
+		doble_salt -= 1
+	if is_on_floor():
+		doble_salt = 2
+	velocitat = move_and_slide(velocitat, Vector2.UP)
 		
-func _on_Area2D2_area_exited(area):
-	modulate = Color(1, 1, 1)
+	anima(velocitat)
+	
+func body_enter(body):
+	if (body.get_name() == "Terra"):
+		print("Ouch!")
+	
+func anima(velocitat):
+	$Animacions.play("Normal")
+	if velocitat.y != 0:
+		$Animacions.play("Salt")
+	if velocitat.x > 0:
+		$Animacions.flip_h = true
+	if velocitat.x < 0:
+		$Animacions.flip_h = false
+	if acabo_de_tocar_terra == true:
+		$Animacions.play("Salt_Terra")
+
+func _on_Animacions_animation_finished():
+	if $Animacions.animation == 'Salt_Terra':
+		acabo_de_tocar_terra = false
+	if $Animacions.animation == 'Salt':
+		acabo_de_tocar_terra = true
+
+
+func _on_Area2D_body_entered(body):
+	position = Vector2(250, 300)

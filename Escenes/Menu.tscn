@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/Menu.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/BG/NonParallax.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Title.png" type="Texture" id=3]
+[ext_resource path="res://Theme.tres" type="Theme" id=4]
+
+[node name="Menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="NonParallax" type="Sprite" parent="."]
+position = Vector2( 959.898, -320.777 )
+scale = Vector2( 23.9975, 23.9975 )
+texture = ExtResource( 2 )
+
+[node name="Title" type="Sprite" parent="."]
+position = Vector2( 306, 60 )
+scale = Vector2( 0.67037, 0.670371 )
+texture = ExtResource( 3 )
+centered = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -174.5
+margin_top = -458.0
+margin_right = 174.5
+margin_bottom = -226.0
+theme = ExtResource( 4 )
+custom_constants/separation = 20
+
+[node name="Començar" type="Button" parent="VBoxContainer"]
+margin_right = 349.0
+margin_bottom = 64.0
+text = "Començar"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Sortir" type="Button" parent="VBoxContainer"]
+margin_top = 84.0
+margin_right = 349.0
+margin_bottom = 148.0
+text = "Sortir"
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+margin_top = 168.0
+margin_right = 349.0
+margin_bottom = 232.0
+text = "Fullscreen"
+
+[connection signal="pressed" from="VBoxContainer/Començar" to="." method="_on_Comenar_pressed"]
+[connection signal="pressed" from="VBoxContainer/Sortir" to="." method="_on_Sortir_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_Button_pressed"]
