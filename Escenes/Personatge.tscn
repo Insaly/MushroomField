@@ -27,10 +27,6 @@ region = Rect2( 448, 0, 32, 32 )
 atlas = ExtResource( 1 )
 region = Rect2( 96, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=11]
-atlas = ExtResource( 1 )
-region = Rect2( 320, 0, 32, 32 )
-
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 32, 32 )
@@ -47,6 +43,10 @@ region = Rect2( 64, 0, 32, 32 )
 atlas = ExtResource( 1 )
 region = Rect2( 96, 0, 32, 32 )
 
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 1 )
+region = Rect2( 320, 0, 32, 32 )
+
 [sub_resource type="SpriteFrames" id=16]
 animations = [ {
 "frames": [ SubResource( 20 ), SubResource( 21 ), SubResource( 19 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ) ],
@@ -54,14 +54,14 @@ animations = [ {
 "name": "Salt_Terra",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 11 ) ],
-"loop": true,
-"name": "Salt",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
 "loop": true,
 "name": "Normal",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 11 ) ],
+"loop": true,
+"name": "Salt",
 "speed": 5.0
 } ]
 
@@ -69,6 +69,8 @@ animations = [ {
 script = ExtResource( 2 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( 1, 38 )
+scale = Vector2( 0.827758, 0.827758 )
 polygon = PoolVector2Array( -53, -23, -17, -59, 18, -59, 52, -23, 58, -12, 58, 23, 52, 29, 41, 29, 41, 47, 29, 59, -23, 59, -35, 47, -35, 29, -47, 29, -59, 17, -59, -12 )
 
 [node name="Animacions" type="AnimatedSprite" parent="."]

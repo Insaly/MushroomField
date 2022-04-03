@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Menu.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/BG/NonParallax.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/Title.png" type="Texture" id=3]
 [ext_resource path="res://Theme.tres" type="Theme" id=4]
+[ext_resource path="res://Font.tres" type="DynamicFont" id=5]
 
 [node name="Menu" type="Control"]
 anchor_right = 1.0
@@ -52,6 +53,16 @@ margin_top = 168.0
 margin_right = 349.0
 margin_bottom = 232.0
 text = "Fullscreen"
+
+[node name="Label" type="Label" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 10.0
+margin_top = 1002.0
+margin_right = 3800.0
+margin_bottom = 1080.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = ExtResource( 5 )
+text = "Música: Stardew Valley OST - The Valley Comes Alive                                                                                 Fet per: Lluc Aymerich"
 
 [connection signal="pressed" from="VBoxContainer/Començar" to="." method="_on_Comenar_pressed"]
 [connection signal="pressed" from="VBoxContainer/Sortir" to="." method="_on_Sortir_pressed"]
